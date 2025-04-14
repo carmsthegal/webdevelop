@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the State Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .container {
+      margin: 0 auto;
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+    input[type="text"] {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .message {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    #play-again {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Guess the State Game</h1>
+    <p>Guess the state! The computer will give you the first letter.</p>
+    <p id="hint">First letter: <span id="first-letter"></span></p>
+    <input type="text" id="guess" placeholder="Type your guess here..." />
+    <button onclick="checkGuess()">Submit Guess</button>
+    <div id="message" class="message"></div>
+    <button id="play-again" onclick="resetGame()">Play Again</button>
+  </div>
+
+  <script>
+    // List of states
+    const states = [
+      "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", 
+      "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", 
+      "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", 
+      "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", 
+      "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", 
+      "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", 
+      "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+    ];
+
+    let currentState;
+    let firstLetter;
+    let guessesLeft;
+    let hintGiven;
+
+    // Function to start a new game
+    function startGame() {
+      currentState = states[Math.floor(Math.random() * states.length)];
+      firstLetter = currentState.charAt(0).toUpperCase();
+      guessesLeft = 3;
+      hintGiven = false;
+
+      // Display the first letter
+      document.getElementById("first-letter").innerText = firstLetter;
+      document.getElementById("guess").value = ''; // clear the input field
+      document.getElementById("message").innerText = '';
+      document.getElementById("message").style.color = 'black';
+      document.getElementById("play-again").style.display = 'none'; // hide the Play Again button
+      document.getElementById("guess").disabled = false; // Enable input field
+    }
+
+    // Function to check the guess
+    function checkGuess() {
+      let userGuess = document.getElementById("guess").value.trim();
+
+      if (userGuess.toLowerCase() === currentState.toLowerCase()) {
+        document.getElementById("message").innerText = "Congratulations, you guessed the state!";
+        document.getElementById("message").style.color = "green";
+        document.getElementById("play-again").style.display = 'inline-block'; // show Play Again button
+        document.getElementById("guess").disabled = true; // Disable input field after game ends
+      } else {
+        guessesLeft--;
+        if (guessesLeft > 0) {
+          document.getElementById("message").innerText = `Wrong guess! You have ${guessesLeft} tries left.`;
+        } else {
+          if (!hintGiven) {
+            hintGiven = true;
+            let secondLetter = currentState.charAt(1).toUpperCase();
+            document.getElementById("message").innerText = `Wrong again! Here's a hint: The second letter is ${secondLetter}. You have 1 more try.`;
+          } else {
+            document.getElementById("message").innerText = `You lost! The correct state was: ${currentState}.`;
+            document.getElementById("message").style.color = "red";
+            document.getElementById("play-again").style.display = 'inline-block'; // show Play Again button
+            document.getElementById("guess").disabled = true; // Disable input field after game ends
+          }
+        }
+      }
+    }
+
+    // Function to reset the game
+    function resetGame() {
+      startGame();
+    }
+
+    // Start a new game when the page loads
+    startGame();
+  </script>
+
+</body>
+</html>

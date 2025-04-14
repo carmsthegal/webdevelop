@@ -1,0 +1,96 @@
+.common{
+    text-align: center;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    color: blue;
+}
+
+.header{
+    height: 150px;
+    background-color: dark palevioletred;
+    color: whitesmoke;
+    text-align: center;
+    text-shadow: 
+    -1px 0px 0px rgb(0, 0, 0), /* Left */
+    1px 0px 0px rgb(0, 0, 0),  /* Right */
+    0px -1px 0px rgb(0, 0, 0), /* Top */
+    0px 1px 0px rgb(0, 0, 0);  /* Bottom */
+    line-height: 150px;
+}
+nav{
+    background-color: rgba(219, 92, 24, 0.521);
+    padding: 20px;
+    overflow: hidden;
+}
+
+nav a {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(245, 239, 239);
+    padding: 20px;
+}
+
+nav a:hover {
+    background-color: rgb(220, 103, 53)
+}
+
+.mainbody{
+    background-color: rgba(191, 191, 64, 0.666);
+    color: black; 
+    text-align: center;
+   
+
+}
+.footer{
+    background-color: bisque;
+    color: rgb(250, 128, 114);
+    position: fixed;
+    bottom: 0;
+    left: 1px;
+    right: 1px;
+    height: 60px;
+    padding-top: 15px;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.centered-list{
+    text-align: center;
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+
+ul {
+    text-align: center;
+    list-style-position: inside;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #tippytop {
+    display: block; /* Makes it look like a button */
+    background-color: olive; /* Olive green background */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 20px; /* Add padding for button-like appearance */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold; /* Make text bold */
+    text-align: center; /* Center the text */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
